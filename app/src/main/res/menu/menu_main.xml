@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ignition.MapsActivity">
+
+    <item
+        android:id="@+id/AirConditioner"
+        android:checkable="true"
+        android:title="Air Conditioner" />
+
+    <item
+        android:id="@+id/WornOutTires"
+        android:checkable="true"
+        android:title="Worn Out Tires" />
+    <item
+        android:id="@+id/EcoMode"
+        android:checkable="true"
+        android:title="Eco-Mode" />
+    <item
+        android:id="@+id/LowTirePressure"
+        android:checkable="true"
+        android:title="Low Tire Pressure" />
+    <item
+        android:id="@+id/SlipperyRoad"
+        android:checkable="true"
+        android:title="Slippery Road" />
+    <item
+        android:id="@+id/PassengersFull"
+        android:checkable="true"
+        android:title="4 Passengers" />
+    <item
+        android:id="@+id/BootFull"
+        android:checkable="true"
+        android:title="Car Boot Full" />
+    <item
+        android:id="@+id/SecondaryStorage"
+        android:checkable="true"
+        android:title="Top Storage Full" />
+</menu>
