@@ -3,26 +3,49 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable-v21/ic_menu_camera.xml" value="0.25" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable-v21/ic_menu_gallery.xml" value="0.25" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable-v21/ic_menu_slideshow.xml" value="0.25" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.186" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/button_shape_test.xml" value="0.222" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/circular_progress_bar.xml" value="0.1885" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/circular_shape.xml" value="0.1885" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_launcher_background.xml" value="0.186" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_view_directions.xml" value="0.196" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_view_dot.xml" value="0.196" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/rounded_corner.xml" value="0.226" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/side_nav_bar.xml" value="0.25" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/activity_maps.xml" value="0.252356780275562" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/activity_maps.xml" value="0.1" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/activity_passager_selection.xml" value="0.1762917933130699" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/activity_test_drive_parameters.xml" value="0.18020833333333333" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/app_bar_test_drive_parameters.xml" value="0.18020833333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/content_main.xml" value="0.14722222222222223" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/content_test_drive_parameters.xml" value="0.16614583333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/custom_info_contents.xml" value="0.2859375" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/data_rv.xml" value="0.17760416666666667" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_database_view.xml" value="0.17135416666666667" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_first.xml" value="0.14722222222222223" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_gallery.xml" value="0.18020833333333333" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_home.xml" value="0.18020833333333333" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_item.xml" value="0.17760416666666667" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_item_list.xml" value="0.16354166666666667" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_login2.xml" value="0.18802083333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_maps.xml" value="0.2859375" />
-        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_passagers_selection.xml" value="0.1203125" />
-        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_results.xml" value="0.18802083333333333" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_passagers_selection.xml" value="0.22" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_results.xml" value="0.18" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_second.xml" value="0.33" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_slideshow.xml" value="0.18020833333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_splash.xml" value="0.1203125" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/nav_header_test_drive_parameters.xml" value="0.18020833333333333" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/nav_map_activity.xml" value="0.18802083333333333" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/switch_item.xml" value="0.1796875" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/toolbar.xml" value="0.2859375" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/menu/activity_main_drawer.xml" value="0.18020833333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/menu/current_place_menu.xml" value="0.2859375" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/menu/test_drive_parameters.xml" value="0.18020833333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.186" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.186" />
       </map>

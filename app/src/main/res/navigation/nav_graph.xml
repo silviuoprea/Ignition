@@ -17,23 +17,18 @@
     </fragment>
     <fragment
         android:id="@+id/passagersSelection"
-        android:name="com.example.ignition.PassagersSelection"
+        android:name="com.example.ignition.PassengersSelection"
         android:label="fragment_passagers_selection"
         tools:layout="@layout/fragment_passagers_selection" >
         <action
-            android:id="@+id/action_passagersSelection_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_passagersSelection_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.ignition.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_Results"
-            app:destination="@id/results" />
-    </fragment>
+        tools:layout="@layout/fragment_second"/>
     <fragment
         android:id="@+id/results"
         android:name="com.example.ignition.Results"
@@ -42,6 +37,9 @@
         <action
             android:id="@+id/action_Results_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_results_to_databaseView"
+            app:destination="@id/databaseView" />
     </fragment>
     <fragment
         android:id="@+id/Splash"
@@ -52,13 +50,34 @@
             android:id="@+id/action_splash_to_FirstFragment"
             app:destination="@id/FirstFragment" />
         <action
-            android:id="@+id/action_Splash_to_mapsActivity"
-            app:destination="@id/mapsActivity" />
+            android:id="@+id/action_Splash_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
-    <activity
+    <fragment
         android:id="@+id/mapsActivity"
         android:name="com.example.ignition.MapsActivity"
-        android:label="activity_maps"
-        tools:layout="@layout/activity_maps" />
+        android:label="MapsActivity" >
+        <action
+            android:id="@+id/action_mapsActivity_to_results"
+            app:destination="@id/results" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.ignition.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/databaseView"
+        android:name="com.example.ignition.DatabaseView"
+        android:label="fragment_database_view"
+        tools:layout="@layout/fragment_database_view" >
+        <action
+            android:id="@+id/action_databaseView_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 
 </navigation>

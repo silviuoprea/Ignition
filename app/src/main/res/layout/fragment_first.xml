@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
     tools:context=".FirstFragment">
 
     <TextView
         android:id="@+id/textview_first"
         android:layout_width="215dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:text="@string/hello_first_fragment"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/button_first"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

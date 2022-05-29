@@ -1,8 +1,6 @@
 package com.example.ignition;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -16,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private int number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         }
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

@@ -8,9 +8,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,7 +18,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,6 +42,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
+import com.example.ignition.databinding.ActivityMapsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,7 +50,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     private static final String TAG = MapsActivity.class.getSimpleName();
     SupportMapFragment mapFragment;
@@ -70,49 +74,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView fuelConsumed;
     private ProgressBar speedometer;
     private double fuelConsumption = 0.0;
-    private boolean isChecked = false;
+    private double fromFrag1;
+    private double toSend;
+    private String duration;
+    private String distance;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    ImageView powerButton;ImageView accelPedal;ImageView breakPedal;
+    private ActivityMapsBinding binding;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        polyLineList = new ArrayList<>();
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = ActivityMapsBinding.inflate(inflater, container, false);
+        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                fromFrag1 = result.getDouble("data");
+            }
+        });
+        return binding.getRoot();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void onViewCreated(@NonNull View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
 
-        ImageView powerButton = findViewById(R.id.destination_button);
-        destinationEditText = findViewById(R.id.edittext_place);
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        polyLineList = new ArrayList<>();
+        powerButton = v.findViewById(R.id.destination_button);
+        destinationEditText = v.findViewById(R.id.edittext_place);
+        accelPedal = v.findViewById(R.id.accelpedal);
+        breakPedal = v.findViewById(R.id.breakpedal);
+        speedometer = v.findViewById(R.id.speedometer);
+        speedometerText = v.findViewById(R.id.speedometerText);
+        fuelConsumed = v.findViewById(R.id.fuelConsumed);
+
+
         powerButton.setOnClickListener(view -> {
             destination = destinationEditText.getText().toString();
             destination = destination.replace(" ", "+");
             Log.d(TAG, destination);
-            mapFragment.getMapAsync(MapsActivity.this);
+            mapFragment.getMapAsync(this);
         });
 
-
-        ImageView accelPedal = findViewById(R.id.accelpedal);
         accelPedal.setOnClickListener(view -> {
             updateSpeed(true);
         });
         accelPedal.setOnLongClickListener(view -> {
             while(true){
-            updateSpeed(true);}
+                updateSpeed(true);}
         });
-        ImageView breakPedal = findViewById(R.id.breakpedal);
         breakPedal.setOnClickListener(view -> {
             updateSpeed(false);
         });
 
-        speedometer = findViewById(R.id.speedometer);
         speedometer.setProgress(200-multiplier);
 
-        speedometerText = findViewById(R.id.speedometerText);
         speedometerText.setText(200-multiplier + "km/h");
 
-        fuelConsumed = findViewById(R.id.fuelConsumed);
         fuelConsumed.setText(fuelConsumption + "l");
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
     /**
@@ -132,37 +155,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         else multiplier = 30_000_000;
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem airConditioner = menu.findItem(R.id.AirConditioner);
-        airConditioner.setChecked(isChecked);
-        MenuItem wornOutTires = menu.findItem(R.id.WornOutTires);
-        wornOutTires.setChecked(isChecked);
-        MenuItem ecoMode = menu.findItem(R.id.EcoMode);
-        ecoMode.setChecked(isChecked);
-        MenuItem lowTirePressure = menu.findItem(R.id.LowTirePressure);
-        lowTirePressure.setChecked(isChecked);
-        MenuItem slipperyRoad = menu.findItem(R.id.SlipperyRoad);
-        slipperyRoad.setChecked(isChecked);
-        MenuItem passengersFull = menu.findItem(R.id.PassengersFull);
-        passengersFull.setChecked(isChecked);
-        MenuItem bootFull = menu.findItem(R.id.BootFull);
-        bootFull.setChecked(isChecked);
-        MenuItem secondaryStorage = menu.findItem(R.id.SecondaryStorage);
-        secondaryStorage.setChecked(isChecked);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.AirConditioner:
-                isChecked = !item.isChecked();
-                item.setChecked(isChecked);
-                return true;
-            default:
-                return false;
-        }
+    private void setFuelConsumption()
+    {
+        Log.v(TAG, "str state =" + fromFrag1);
+        // display the string into textView
+        fuelConsumption += fromFrag1;
     }
 
     /**
@@ -188,7 +186,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(home));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                 .target(googleMap.getCameraPosition().target)
-                .zoom(20)
+                .zoom(18)
                 .bearing(30)
                 .tilt(45)
                 .build()));
@@ -209,6 +207,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Log.d(TAG, response + "");
                             try {
                                 JSONArray jsonArray = response.getJSONArray("routes");
+                                distance = jsonArray.getJSONObject(0).getJSONArray("legs").getJSONObject(0).getJSONObject("distance").getString("text");
+                                duration = jsonArray.getJSONObject(0).getJSONArray("legs").getJSONObject(0).getJSONObject("duration").getString("text");
+
+
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject route = jsonArray.getJSONObject(i);
                                     JSONObject poly = route.getJSONObject("overview_polyline");
@@ -266,9 +268,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
+                                        Log.v(TAG, "Checker before =" + toSend);
+                                        toSend = fuelConsumption;
+                                        Log.v(TAG, "Checker after =" + toSend);
                                         if (index < polyLineList.size() - 1) {
                                             index++;
                                             next = index + 1;
+                                        }
+                                        else
+                                        {
+                                            moveOn();
+                                            return;
                                         }
                                         if (index < polyLineList.size() - 1) {
                                             startPosition = polyLineList.get(index);
@@ -278,6 +288,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         speed = (Math.abs(endPosition.longitude - startPosition.longitude)) + (Math.abs(endPosition.latitude - startPosition.latitude));
                                         fuelConsumption += (speed + multiplier) / 10_000;
                                         fuelConsumption = Math.round(fuelConsumption * 100.00) /100.00;
+                                        Log.v(TAG, "Before =" + fuelConsumption);
+                                        setFuelConsumption();
+                                        Log.v(TAG, "After =" + fuelConsumption);
                                         fuelConsumed.setText(fuelConsumption + "l");
                                         speedLong = (int) (speed * 30_000)*multiplier;
                                         valueAnimator.setDuration(speedLong);
@@ -297,7 +310,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     .newCameraPosition
                                                             (new CameraPosition.Builder()
                                                                     .target(newPos)
-                                                                    .zoom(20f)
+                                                                    .zoom(18f)
                                                                     .build()));
                                         });
                                         valueAnimator.start();
@@ -312,18 +325,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         }
                     }, error -> Log.d(TAG, error + ""));
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
             requestQueue.add(jsonObjectRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     /**
@@ -380,5 +387,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         else if (begin.latitude < end.latitude && begin.longitude >= end.longitude)
             return (float) ((90 - angle) + 270);
         return -1;
+    }
+
+    private void moveOn()
+    {
+        Bundle result2 = new Bundle();
+        Bundle result3 = new Bundle();
+        Bundle result4 = new Bundle();
+        result2.putDouble("final", toSend);
+        result3.putString("final", duration);
+        result4.putString("final", distance);
+        getParentFragmentManager().setFragmentResult("key2", result2);
+        getParentFragmentManager().setFragmentResult("key3", result3);
+        getParentFragmentManager().setFragmentResult("key4", result4);
+        NavHostFragment.findNavController(MapsActivity.this)
+                .navigate(R.id.action_mapsActivity_to_results);
     }
 }

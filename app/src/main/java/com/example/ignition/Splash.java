@@ -2,14 +2,13 @@ package com.example.ignition;
 
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 
 /**
@@ -29,7 +28,7 @@ public class Splash extends Fragment {
             try {
                 // Thread will sleep for 5 seconds
                 sleep(5*500);
-                NavHostFragment.findNavController(Splash.this).navigate(R.id.action_Splash_to_mapsActivity);
+                NavHostFragment.findNavController(Splash.this).navigate(R.id.action_Splash_to_loginFragment);
 
                 // After 5 seconds redirect to another intent
 

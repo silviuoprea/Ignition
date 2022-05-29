@@ -8,29 +8,12 @@ public class TestDrive {
     int finalDistance = 150, currentDistance, tripProgress;
     double speed = 0;
     double fuelConsumption = 0.0, fuelConsumptionRate = 0.0;
-    PassagersSelection passagersSelection = new PassagersSelection();
     public void accelerate()
     {
         speed = speed+1;
     }
 
     public void fuelConsumptionCalculator() {
-        fuelConsumptionRate += speed/5000;
-        switch (passagersSelection.passagerNumber) {
-            case 2:
-                fuelConsumptionRate += 50.1;
-                break;
-            case 3:
-                fuelConsumptionRate += 50.2;
-                break;
-            case 4:
-                fuelConsumptionRate += 50.3;
-                break;
-            case 5:
-                fuelConsumptionRate += 50.4;
-            default:
-                break;
-        }
         if (fuelConsumptionRate < 0)
             fuelConsumptionRate = 0;
     }

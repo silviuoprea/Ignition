@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import com.example.ignition.databinding.FragmentSecondBinding;
 
@@ -59,7 +59,6 @@ public class SecondFragment extends Fragment {
                         {
                             distanceTravelled = testDrive.currentDistance;
                             fuel = testDrive.fuelConsumption;
-                            Navigation.findNavController(requireView()).navigate(R.id.action_SecondFragment_to_Results);
                         }
                     }
                 };
