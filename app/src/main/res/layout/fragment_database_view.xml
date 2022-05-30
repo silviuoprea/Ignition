@@ -7,18 +7,38 @@
     android:orientation="vertical"
     tools:context=".DatabaseView">
 
-    <!--recycler view for displaying our courses-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idFuelConsumed"
         android:layout_width="match_parent"
         android:background="@color/colorSecondary"
-        android:layout_height="700dp" />
+        android:layout_height="700dp" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/startOver"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="Start Over" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idId"
+        android:layout_width="match_parent"
+        android:layout_height="000dp"
+        android:background="@color/colorSecondary">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idDistanceTravelled"
+        android:layout_width="match_parent"
+        android:background="@color/colorSecondary"
+        android:layout_height="000dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idTimeElapsed"
+        android:layout_width="match_parent"
+        android:background="@color/colorSecondary"
+        android:layout_height="000dp" />
 
 
 </LinearLayout>

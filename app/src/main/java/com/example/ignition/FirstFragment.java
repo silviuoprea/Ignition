@@ -28,18 +28,25 @@ public class FirstFragment extends Fragment {
 
     }
 
+    /****** Create Thread that will sleep for 1 second****/
+    Thread background = new Thread() {
+        public void run() {
+            try {
+                // Thread will sleep for 1 second
+                sleep(2*500);
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_passagersSelection);
+
+                // After 1 second redirect to another intent
+
+            } catch (Exception e) {
+            }
+        }
+    };
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        buttonFirst = (Button)view.findViewById(R.id.button_first);
         testDrive.resetData();
-
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_passagersSelection);
-            }
-        });
+        // start thread
+        background.start();
     }
 
     @Override

@@ -31,13 +31,14 @@ public class DataModel {
     }
 
     public String getDistance() {
-        return duration;
+        return distance;
     }
 
     public void setDistance(String distance) {
-        this.duration = distance;
+        this.distance = distance;
     }
-    public DataModel(String fuelConsumption, String distance, String duration) {
+    public DataModel(int id, String fuelConsumption, String distance, String duration) {
+        this.id = id;
         this.fuelConsumption = fuelConsumption;
         this.duration = duration;
         this.distance = distance;

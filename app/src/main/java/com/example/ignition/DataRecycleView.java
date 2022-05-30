@@ -36,7 +36,10 @@ public class DataRecycleView extends RecyclerView.Adapter<DataRecycleView.ViewHo
         // on below line we are setting data
         // to our views of recycler view item.
         DataModel modal = dataModelArrayList.get(position);
-        holder.fuelConsumptionTV.setText(modal.getFuelConsumption());
+        holder.idTV.setText("Ride Number: " + modal.getId());
+        holder.fuelConsumptionTV.setText("Fuel Consumed: " + modal.getFuelConsumption() + " l");
+        holder.distanceTravelledTV.setText("Distance Travelled: " + modal.getDistance());
+        holder.timeElapsedTV.setText("Time Elapsed: " + modal.getDuration());
     }
 
     @Override
@@ -49,11 +52,17 @@ public class DataRecycleView extends RecyclerView.Adapter<DataRecycleView.ViewHo
 
         // creating variables for our text views.
         private TextView fuelConsumptionTV;
+        private TextView distanceTravelledTV;
+        private TextView timeElapsedTV;
+        private TextView idTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // initializing our text views
             fuelConsumptionTV = itemView.findViewById(R.id.idFuelConsumed);
+            distanceTravelledTV = itemView.findViewById(R.id.idDistanceTravelled);
+            timeElapsedTV = itemView.findViewById(R.id.idTimeElapsed);
+            idTV = itemView.findViewById(R.id.idId);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ignition;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -62,9 +63,15 @@ public class Results extends Fragment {
         Handler handler = new Handler();
         final Runnable r = new Runnable() {
             public void run() {
-                String messageToShow = "Fuel consumed is: " + fromMapsActivity + "\n" + "Duration is: " + duration + "\n" + "Distance is: " + distance;
-                TextView display = (TextView) requireView().findViewById(R.id.textview_first);
-                display.setText(messageToShow);
+                @SuppressLint("DefaultLocale") String fuelToShow = String.format("%.2f", fromMapsActivity) + " l";
+                String distanceToShow = ""+distance;
+                String timeToShow = ""+duration;
+                TextView displayFuel = (TextView) requireView().findViewById(R.id.fuelId);
+                TextView displayDistance = (TextView) requireView().findViewById(R.id.distanceId);
+                TextView displayTime = (TextView) requireView().findViewById(R.id.timeId);
+                displayFuel.setText(fuelToShow);
+                displayDistance.setText(distanceToShow);
+                displayTime.setText(timeToShow);
             }
         };
         handler.postDelayed(r, 0);

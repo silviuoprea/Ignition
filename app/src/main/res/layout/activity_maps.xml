@@ -16,16 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edittext_place"
             android:layout_width="match_parent"
-            android:background="@drawable/rounded_corner"
-            android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:layout_marginTop="0dp"
+            android:background="@drawable/rounded_corner"
             android:hint="Enter Place"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/destination_button"

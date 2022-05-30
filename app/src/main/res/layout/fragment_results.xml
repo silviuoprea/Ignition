@@ -7,31 +7,18 @@
     android:background="@color/colorSecondary"
     tools:context=".Results">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/textview_first"
-        android:layout_width="215dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="200dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/saveToDB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
         android:background="@color/colorSecondary"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintTop_toBottomOf="@+id/tableviews"
+        app:layout_constraintVertical_bias="0.55" />
+
     <Button
         android:id="@+id/viewDatabase"
         android:layout_width="match_parent"
@@ -41,8 +28,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintTop_toBottomOf="@+id/tableviews"
+        app:layout_constraintVertical_bias="0.69"/>
     <Button
         android:id="@+id/returnToStart"
         android:layout_width="match_parent"
@@ -52,7 +39,71 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/tableviews"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <TableLayout
+        android:id="@+id/tableviews"
+        android:layout_width="340dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="6dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/fuelImage"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:src="@drawable/fuel" />
+
+            <ImageView
+                android:id="@+id/distanceImage"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:src="@drawable/distance" />
+
+            <ImageView
+                android:id="@+id/timeImage"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:src="@drawable/time" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/fuelId"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="40.22 l"
+                android:gravity="center"
+                android:textSize="40dp"/>
+
+            <TextView
+                android:id="@+id/distanceId"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="40dp"/>
+
+            <TextView
+                android:id="@+id/timeId"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="20.22m"
+                android:gravity="center"
+                android:textSize="40dp"/>
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

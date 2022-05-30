@@ -22,15 +22,15 @@ public class Splash extends Fragment {
         // Required empty public constructor
     }
 
-    /****** Create Thread that will sleep for 5 seconds****/
+    /****** Create Thread that will sleep for 2.5 seconds****/
     Thread background = new Thread() {
         public void run() {
             try {
-                // Thread will sleep for 5 seconds
+                // Thread will sleep for 2.5 seconds
                 sleep(5*500);
                 NavHostFragment.findNavController(Splash.this).navigate(R.id.action_Splash_to_loginFragment);
 
-                // After 5 seconds redirect to another intent
+                // After 2.5 seconds redirect to another intent
 
             } catch (Exception e) {
             }

@@ -11,6 +11,7 @@
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/circular_progress_bar.xml" value="0.1885" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/circular_shape.xml" value="0.1885" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_launcher_background.xml" value="0.186" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.196" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_view_directions.xml" value="0.196" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/ic_view_dot.xml" value="0.196" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/drawable/rounded_corner.xml" value="0.226" />
@@ -25,7 +26,7 @@
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/custom_info_contents.xml" value="0.2859375" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/data_rv.xml" value="0.17760416666666667" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_database_view.xml" value="0.17135416666666667" />
-        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_first.xml" value="0.14722222222222223" />
+        <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_gallery.xml" value="0.18020833333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_home.xml" value="0.18020833333333333" />
         <entry key="..\:/Repos/Ignition/app/src/main/res/layout/fragment_item.xml" value="0.17760416666666667" />
