@@ -3,7 +3,11 @@ package com.example.ignition;
 import static com.google.android.gms.maps.model.JointType.ROUND;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,8 +21,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.fragment.NavHostFragment;
@@ -28,6 +32,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ignition.databinding.ActivityMapsBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,7 +49,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
-import com.example.ignition.databinding.ActivityMapsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -59,6 +65,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private Marker marker;
     private float v;
     private double lat, lng;
+    private double latitude, longitude;
     private Handler handler;
     private LatLng startPosition, endPosition;
     private int index, next;
@@ -78,6 +85,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private double toSend;
     private String duration;
     private String distance;
+    FusedLocationProviderClient client;
 
     ImageView powerButton;ImageView accelPedal;ImageView breakPedal;
     private ActivityMapsBinding binding;
@@ -90,6 +98,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                 fromFrag1 = result.getDouble("data");
             }
         });
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        getCurrentLocation();
         return binding.getRoot();
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -162,6 +173,39 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         // display the string into textView
         fuelConsumption += fromFrag1;
     }
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation()
+    {
+        // Initialize Location manager
+        LocationManager locationManager
+                = (LocationManager)getActivity()
+                .getSystemService(
+                        Context.LOCATION_SERVICE);
+
+        Log.d(TAG, " GPS ACTIVE : " + locationManager.isProviderEnabled(
+                LocationManager.GPS_PROVIDER) + "");
+        Log.d(TAG, " NETWORK ACTIVE : " + locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER) + "");
+        // Check condition
+        if (locationManager.isProviderEnabled(
+                LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER)) {
+            // When location service is enabled
+            // Get last location
+            client.getLastLocation().addOnCompleteListener(
+                    task -> {
+                        // Initialize location
+                        Location location
+                                = task.getResult();
+                        Log.d(TAG, " location is  : " + location + "");
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                        Log.d(TAG, " Latitudinea e : " + latitude + "");
+                        Log.d(TAG, " longitudea e : " + longitude + "");
+                    });
+        }
+    }
 
     /**
      * Manipulates the map once available.
@@ -174,14 +218,17 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Log.d(TAG, " Latitudinea e : " + latitude + "");
+        Log.d(TAG, " longitudea e : " + longitude + "");
+
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.setTrafficEnabled(false);
+        mMap.setTrafficEnabled(true);
         mMap.setIndoorEnabled(false);
-        mMap.setBuildingsEnabled(false);
+        mMap.setBuildingsEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(false);
         // Add a marker in Home and move the camera
-        home = new LatLng(47.1585, 27.6014);
+        home = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(home).title("Marker in Home"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(home));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
